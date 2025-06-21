@@ -1,0 +1,34 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+group = 'org.foxesworld.iconParser'
+version = '1.0.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.formdev:flatlaf:3.4.1'
+    implementation 'com.formdev:flatlaf-extras:3.4.1'
+    implementation 'com.formdev:flatlaf-intellij-themes:3.4'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+shadowJar {
+    archiveBaseName.set('ico-viewer-app')
+    archiveClassifier.set('all')
+
+    manifest {
+        attributes(
+                'Main-Class': 'org.foxesworld.iconParser.IcoParserApp'
+        )
+    }
+}
+
